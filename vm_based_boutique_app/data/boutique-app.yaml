@@ -1,0 +1,144 @@
+application_name: boutique
+vmware_environment:
+  datacenter: PRODUCTION
+  datastore: DS-LON
+  resource_pool: "/PRODUCTION/host/PROD-LON-CLUSTER/Resources/SoftServe-Team"
+  vm_template_name: Boutique-App-Template
+  vm_parent_folder: "Users/rwhitear/Ubuntu"
+boutique-app:
+  non_dependent_services:
+    adservice:
+      image: rwhitear/showcase-adservice:develop
+      ip_address: 10.11.42.32
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    emailservice:
+      image: rwhitear/showcase-emailservice:develop
+      ip_address: 10.11.42.33
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    paymentservice:
+      image: rwhitear/showcase-paymentservice:develop
+      ip_address: 10.11.42.34
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    shippingservice:
+      image: rwhitear/showcase-shippingservice:develop
+      ip_address: 10.11.42.35
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    currencyservice:
+      image: rwhitear/showcase-currencyservice:develop
+      ip_address: 10.11.42.37
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    productcatalogservice:
+      image: rwhitear/showcase-productcatalogservice:vertical15
+      ip_address: 10.11.42.40
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    redis:
+      image: redis:alpine
+      ip_address: 10.11.42.31
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+
+  dependent_services:
+    cartservice:
+      image: rwhitear/cartservice:develop
+      ip_address: 10.11.42.30
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    checkoutservice:
+      image: rwhitear/showcase-checkoutservice:develop
+      ip_address: 10.11.42.36
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    recommendationservice:
+      image: rwhitear/showcase-recommendationservice:develop
+      ip_address: 10.11.42.41
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 2
+      memory: 2048
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+
+  frontend_services:
+    frontend:
+      image: rwhitear/showcase-frontend:vertical15
+      ip_address: 10.11.42.38
+      subnet_bits: 24
+      gateway: 10.11.42.254
+      nameserver: 10.0.10.210
+      domain: bedfont.io
+      num_cpus: 4
+      memory: 4096
+      disk_gb: 20
+      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    # loadgenerator:
+    #   image: rwhitear/showcase-adservice:develop
+    #   ip_address: 10.11.42.39
+    #   subnet_bits: 24
+    #   gateway: 10.11.42.254
+    #   nameserver: 10.0.10.210
+    #   domain: bedfont.io
+    #  num_cpus: 2
+    # memory: 2048
+    #   vm_port_group: "IKS|IKS-ANP|IKS-EPG"

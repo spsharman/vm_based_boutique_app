@@ -1,0 +1,143 @@
+version: "3.8"
+services:
+  adservice:
+    image: rwhitear/showcase-adservice:develop
+    container_name: adservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "9555:9555"
+    environment:
+      - PORT=9555
+
+  cartservice:
+    image: rwhitear/showcase-cartservice:develop
+    container_name: cartservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "7070:7070"
+    environment:
+      - REDIS_ADDR=redis:6379
+
+  checkoutservice:
+    image: rwhitear/showcase-checkoutservice:develop
+    container_name: checkoutservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "5050:5050"
+    environment:
+      - PORT=5050
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+      - SHIPPING_SERVICE_ADDR=shippingservice:50051
+      - PAYMENT_SERVICE_ADDR=paymentservice:50051
+      - EMAIL_SERVICE_ADDR=emailservice:5000
+      - CURRENCY_SERVICE_ADDR=currencyservice:7000
+      - CART_SERVICE_ADDR=cartservice:7070
+
+  currencyservice:
+    image: rwhitear/showcase-currencyservice:develop
+    container_name: currencyservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "7000:7000"
+    environment:
+      - PORT=7000
+
+  emailservice:
+    image: rwhitear/showcase-emailservice:develop
+    container_name: emailservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "8080:8080"
+    environment:
+      - PORT=8080
+      - DISABLE_PROFILER=1
+
+  paymentservice:
+    image: rwhitear/showcase-paymentservice:develop
+    container_name: paymentservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "50051:50051"
+    environment:
+      - PORT=50051
+
+  productcatalogservice:
+    image: rwhitear/showcase-productcatalogservice:vertical15
+    container_name: productcatalogservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "3550:3550"
+    environment:
+      - PORT=3550
+
+  recommendationservice:
+    image: rwhitear/showcase-recommendationservice:develop
+    container_name: recommendationservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "8080:8080"
+    environment:
+      - PORT=8080
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+
+  shippingservice:
+    image: rwhitear/showcase-shippingservice:develop
+    container_name: shippingservice
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "50051:50051"
+    environment:
+      - PORT=50051
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    restart: always
+    networks:
+      - boutique
+    # ports:
+    #   - "6379:6379"
+    environment:
+      - PORT=6379
+
+  frontend:
+    image: rwhitear/showcase-frontend:vertical15
+    container_name: frontend
+    restart: always
+    networks:
+      - boutique
+    ports:
+      - "80:8080"
+    environment:
+      - PORT=8080
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+      - CURRENCY_SERVICE_ADDR=currencyservice:7000
+      - CART_SERVICE_ADDR=cartservice:7070
+      - RECOMMENDATION_SERVICE_ADDR=recommendationservice:8080
+      - SHIPPING_SERVICE_ADDR=shippingservice:50051
+      - CHECKOUT_SERVICE_ADDR=checkoutservice:5050
+      - AD_SERVICE_ADDR=adservice:9555
+      - ENV_PLATFORM=onprem
+      - CUSTOMER_NAME=wibble
+
+networks:
+  boutique:
+    name: boutique
