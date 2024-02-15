@@ -1,144 +1,152 @@
 application_name: boutique
 vmware_environment:
-  datacenter: PRODUCTION
-  datastore: DS-LON
-  resource_pool: "/PRODUCTION/host/PROD-LON-CLUSTER/Resources/SoftServe-Team"
-  vm_template_name: Boutique-App-Template
-  vm_parent_folder: "Users/rwhitear/Ubuntu"
+  datacenter: UKTME
+  datastore: hx-dev-datastore-01
+  resource_pool: "/UKTME/host/hx-dev/Resources/ssharman"
+  vds_switch_name: hx-dev-01-vds-01
+  vm_template_name: Boutique-App-Template-hx
+  vm_parent_folder: "/hx-dev/hx-dev-01-vds-01/tn-demo-03"
+
+  # datastore: vsanDatastore
+  # resource_pool: "/UKTME/host/ucsc-c220-m5sx/Resources/ssharman"
+  # vds_switch_name: ucsc-c220m5-vds-01
+  # vm_template_name: Boutique-App-Template-sa
+  # vm_parent_folder: "/ucsc-c220-m5sx/tn-ssharman"
+
 boutique-app:
   non_dependent_services:
     adservice:
       image: rwhitear/showcase-adservice:develop
-      ip_address: 10.11.42.32
+      ip_address: 10.0.71.50
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.71.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.71.0_24"
     emailservice:
       image: rwhitear/showcase-emailservice:develop
-      ip_address: 10.11.42.33
+      ip_address: 10.0.72.50
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.72.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.72.0_24"
     paymentservice:
       image: rwhitear/showcase-paymentservice:develop
-      ip_address: 10.11.42.34
+      ip_address: 10.0.73.50
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.73.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.73.0_24"
     shippingservice:
       image: rwhitear/showcase-shippingservice:develop
-      ip_address: 10.11.42.35
+      ip_address: 10.0.71.52
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.71.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.71.0_24"
     currencyservice:
       image: rwhitear/showcase-currencyservice:develop
-      ip_address: 10.11.42.37
+      ip_address: 10.0.73.51
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.73.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.73.0_24"
     productcatalogservice:
       image: rwhitear/showcase-productcatalogservice:vertical15
-      ip_address: 10.11.42.40
+      ip_address: 10.0.73.51
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.73.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.73.0_24"
     redis:
       image: redis:alpine
-      ip_address: 10.11.42.31
+      ip_address: 10.0.71.51
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.71.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.71.0_24"
 
   dependent_services:
     cartservice:
-      image: rwhitear/cartservice:develop
-      ip_address: 10.11.42.30
+      image: rwhitear/showcase-cartservice:develop
+      ip_address: 10.0.71.51
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.71.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.71.0_24"
     checkoutservice:
       image: rwhitear/showcase-checkoutservice:develop
-      ip_address: 10.11.42.36
+      ip_address: 10.0.73.50
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.73.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.73.0_24"
     recommendationservice:
       image: rwhitear/showcase-recommendationservice:develop
-      ip_address: 10.11.42.41
+      ip_address: 10.0.71.50
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.0.71.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 2
       memory: 2048
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.0.71.0_24"
 
   frontend_services:
     frontend:
       image: rwhitear/showcase-frontend:vertical15
-      ip_address: 10.11.42.38
+      ip_address: 10.237.100.51
       subnet_bits: 24
-      gateway: 10.11.42.254
-      nameserver: 10.0.10.210
-      domain: bedfont.io
+      gateway: 10.237.100.1
+      nameserver: 10.237.97.134
+      domain: uktme.cisco.com
       num_cpus: 4
       memory: 4096
       disk_gb: 20
-      vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+      vm_port_group: "demo-03|network-segments|10.237.100.0_24"
     # loadgenerator:
     #   image: rwhitear/showcase-adservice:develop
     #   ip_address: 10.11.42.39
     #   subnet_bits: 24
-    #   gateway: 10.11.42.254
-    #   nameserver: 10.0.10.210
-    #   domain: bedfont.io
+    #   gateway: 10.237.100.1
+    #   nameserver: 10.237.97.134
+    #   domain: uktme.cisco.com
     #  num_cpus: 2
     # memory: 2048
-    #   vm_port_group: "IKS|IKS-ANP|IKS-EPG"
+    #   vm_port_group: "rwhitear|network-segments|10.237.100.x_24"

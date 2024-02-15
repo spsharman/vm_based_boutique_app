@@ -1,7 +1,18 @@
+# data "vsphere_network" "demo_network" {
+#   name          = var.vm_port_group
+#   datacenter_id = var.vmware_datacenter_id
+# }
+
+data "vsphere_distributed_virtual_switch" "vds" {
+  name          = var.vmware_vds_switch_name
+  datacenter_id = var.vmware_datacenter_id
+}
+
 data "vsphere_network" "demo_network" {
   name          = var.vm_port_group
   datacenter_id = var.vmware_datacenter_id
-}
+  distributed_virtual_switch_uuid = data.vsphere_distributed_virtual_switch.vds.id
+} 
 
 # VM runcmd boot script
 data "template_file" "runcmd_script" {

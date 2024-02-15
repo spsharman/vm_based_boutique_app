@@ -29,9 +29,9 @@ terraform {
 
 ########### Providers ###########
 provider "vsphere" {
-  user                 = "<USERNAME>"
-  password             = "<PASSWORD>"
-  vsphere_server       = "<VCENTER IP OR FQDN>"
+  user                 = var.vcenter_username
+  password             = var.vcenter_password
+  vsphere_server       = var.vsphere_server
   vim_keep_alive       = 30
   allow_unverified_ssl = true
 }

@@ -36,6 +36,7 @@ module "vm_non_dependent_services" {
   vmware_datacenter_id = data.vsphere_datacenter.demo_dc.id
   vmware_datastore_id = data.vsphere_datastore.demo_datastore.id
   vmware_resource_pool_id = data.vsphere_resource_pool.demo_pool.id
+  vmware_vds_switch_name = local.model.vmware_environment.vds_switch_name
   vmware_folder_path = resource.vsphere_folder.boutique_app_folder.path
   vmware_scsi_type = data.vsphere_virtual_machine.demo_template.scsi_type
   vmware_network_adapter_type = data.vsphere_virtual_machine.demo_template.network_interface_types[0]
@@ -75,6 +76,7 @@ module "vm_dependent_services" {
   vmware_datacenter_id = data.vsphere_datacenter.demo_dc.id
   vmware_datastore_id = data.vsphere_datastore.demo_datastore.id
   vmware_resource_pool_id = data.vsphere_resource_pool.demo_pool.id
+  vmware_vds_switch_name = local.model.vmware_environment.vds_switch_name
   vmware_folder_path = resource.vsphere_folder.boutique_app_folder.path
   vmware_scsi_type = data.vsphere_virtual_machine.demo_template.scsi_type
   vmware_network_adapter_type = data.vsphere_virtual_machine.demo_template.network_interface_types[0]
@@ -118,6 +120,7 @@ module "vm_frontend_services" {
   vmware_datacenter_id = data.vsphere_datacenter.demo_dc.id
   vmware_datastore_id = data.vsphere_datastore.demo_datastore.id
   vmware_resource_pool_id = data.vsphere_resource_pool.demo_pool.id
+  vmware_vds_switch_name = local.model.vmware_environment.vds_switch_name
   vmware_folder_path = resource.vsphere_folder.boutique_app_folder.path
   vmware_scsi_type = data.vsphere_virtual_machine.demo_template.scsi_type
   vmware_network_adapter_type = data.vsphere_virtual_machine.demo_template.network_interface_types[0]

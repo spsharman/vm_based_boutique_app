@@ -75,3 +75,6 @@ variable "vm_port_group" {
 variable "service_ip_addresses" {
   description = "Boutique app service IPs"
 }
+
+variable "vmware_vds_switch_name" {
+}
