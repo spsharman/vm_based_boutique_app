@@ -24,7 +24,7 @@ users:
     lock_passwd: false
     passwd: $6$Lq1TzIitylJy3ON$VxC.0z/0Ddszw78p3cWng.H1//0Zen.ofW68wF7X/85PH7CWc1FBVOzyJ8ttlBUOF7d/1XvPsrePlF9pWrWvc/
     ssh_authorized_keys:
-      - ssh-ed25519 $6$ftNTb8B6M4Z$CGjDu1QZEPlrCyL0JTM4eIDPC4/oUjAza7lbIQuXgnqjNRwAZlPuWuezbh5miHFtCyoCpdbiaDqFeY/5r9QzR0/ ssharman@ssharman-jumphost
+      - ssh-ed25519 $6$ftNTb8B6M4Z$CGjDu1QZEPlrCyL0JTM4eIDPC4/oUjAza7lbIQuXgnqjNRwAZlPuWuezbh5miHFtCyoCpdbiaDqFeY/5r9QzR0 ssharman@ssharman-jumphost
 
 write_files:
 ${runcmdScript}
