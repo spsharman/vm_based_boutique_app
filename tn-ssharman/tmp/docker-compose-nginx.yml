@@ -1,0 +1,16 @@
+nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/sites-available/boutique
+      - ./boutique.crt:/etc/ssl/certs/boutique.crt
+      - ./boutique.key:/etc/ssl/private/boutique.key
+    networks:
+      - nginx
+    
+network:
+  nginx:
+    name: nginx
