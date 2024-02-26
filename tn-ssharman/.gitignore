@@ -10,4 +10,4 @@ plan.out
 # Other
 *.lock.json
 
-/modules/templates/userdata/*.tpl
+./modules/templates/userdata/*.tpl
