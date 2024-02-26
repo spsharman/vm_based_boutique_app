@@ -10,3 +10,4 @@ plan.out
 # Other
 *.lock.json
 
+modules/templates/userdata/**
