@@ -3,6 +3,7 @@ fqdn: ${boutique_app_service}.${domain}
 
 groups:
   - rwhitear
+  - ssharman
 
 users:
   - name: rwhitear

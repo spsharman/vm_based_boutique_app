@@ -3,7 +3,6 @@ fqdn: ${boutique_app_service}.${domain}
 
 groups:
   - rwhitear
-  - ssharman
 
 users:
   - name: rwhitear
@@ -38,16 +37,17 @@ ${resizeRootfs}
   content: |
     version: "3.8"
     services:
-      recommendationservice:
-        image: rwhitear/showcase-recommendationservice:develop
+      currencyservice:
+        image: rwhitear/showcase-currencyservice:develop
         restart: always
         ports:
-          - "8080:8080"
+          - "7000:7000"
         environment:
-          - PORT=8080
-          - PRODUCT_CATALOG_SERVICE_ADDR=${productCatalogServiceAddr}:3550
+          - PORT=7000
 
 runcmd:
   - [ sh, "/var/lib/cloud/scripts/per-once/resize_rootfs.sh" ]
+
+
 
 
