@@ -10,4 +10,3 @@ plan.out
 # Other
 *.lock.json
 
-modules/vsphere-boutique-app/templates/userdata/**
